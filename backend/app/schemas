@@ -1,0 +1,11 @@
+
+CREATE TABLE IF NOT EXISTS `items` (
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  img_link varchar(255),
+  author_id int(11) NOT NULL,
+  last_edit_id int(11),
+  title varchar(255) NOT NULL,
+  description varchar(255) NOT NULL,
+  post_date TIMESTAMP NOT NULL,
+  edit_date TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
