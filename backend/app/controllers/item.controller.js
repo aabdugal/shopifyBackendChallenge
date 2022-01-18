@@ -72,7 +72,7 @@ exports.update = (req, res) => {
 
   Item.updateById(item, (err, data) => {
     if (err) {
-      if (err.kind === 'not_found') {
+      if (err.kind === ' not_found') {
         res.status(404).send({
           message: `Not found Item with id ${req.params.id}.`,
         })
