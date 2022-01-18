@@ -16,6 +16,7 @@ Both the [frontend](https://master.d1nry80urxfqwh.amplifyapp.com/) and [backend]
 - Update Item: PUT /items/:id
 - Remove Item: DELETE /items/:id
 - Remove All Items: DELETE /items
+- Upload Picture Thumbnail: PUT /items/photo/:id
 
 ## SQL Schema
 
