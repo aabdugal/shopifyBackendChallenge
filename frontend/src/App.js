@@ -7,8 +7,8 @@ import Item from './components/Item'
 
 const App = () => {
   const [items, setItems] = useState([])
-  const [title, setTitle] = useState('title')
-  const [desc, setDesc] = useState('description')
+  const [title, setTitle] = useState('')
+  const [desc, setDesc] = useState('')
   const [add, setAdd] = useState(false)
   useEffect(async () => {
     const { data } = await axios.get(`${path}/items`)
