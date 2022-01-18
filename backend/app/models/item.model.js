@@ -1,16 +1,15 @@
 const sql = require('./db.js')
 
 const Item = function (item) {
-  this.id = item.id,
-  this.img_link = item.img_link,
-  this.author_id = item.author_id,
-  this.last_edit_id = item.last_edit_id,
-  this.title = item.title,
-  this.description = item.description,
-  this.post_date = item.post_date,
-  this.edit_date = item.edit_date
+  ;(this.id = item.id),
+    (this.img_link = item.img_link),
+    (this.author_id = item.author_id),
+    (this.last_edit_id = item.last_edit_id),
+    (this.title = item.title),
+    (this.description = item.description),
+    (this.post_date = item.post_date),
+    (this.edit_date = item.edit_date)
 }
-
 
 Item.create = (newItem, result) => {
   sql.query('INSERT INTO items SET ?', newItem, (err, res) => {
@@ -56,11 +55,33 @@ Item.findById = (id, result) => {
   })
 }
 
+Item.setImg = (newPic, id, result) => {
+  sql.query(
+    'UPDATE items SET img_link = ? WHERE id = ?',
+    [newPic, id],
+    (err, res) => {
+      if (err) {
+        console.log('error: ', err)
+        result(err, null)
+        return
+      }
+
+      console.log('added: pic to id')
+      result(null, res)
+    }
+  )
+}
+
 Item.updateById = (item, result) => {
   sql.query(
     'UPDATE items SET title = ?, description = ?, img_link = ?, last_edit_id =?, edit_date =? WHERE id = ?',
     [
-      item.title, item.description, item.img_link, item.last_edit_id, item.edit_date, item.id
+      item.title,
+      item.description,
+      item.img_link,
+      item.last_edit_id,
+      item.edit_date,
+      item.id,
     ],
     (err, res) => {
       if (err) {

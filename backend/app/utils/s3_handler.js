@@ -1,5 +1,4 @@
 const aws = require('aws-sdk')
-
 const id = process.env.AWS_ID
 const secret = process.env.SECRET
 const region = 'us-east-2'
@@ -13,34 +12,13 @@ aws.config.update({
 
 const s3 = new aws.S3()
 
-exports.upload = async (file) => {
+exports.upload = (file, itemId) => {
   const blob = file.data
-
-  const params = {
+  let params = {
     Bucket: bucket,
-    // Key: file.name,
-    Key: file,
+    Key: itemId,
     Body: blob,
   }
-  const request = await s3.upload(params)
-  console.log(request)
-  return request
+  let request = s3.upload(params)
+  return request.promise()
 }
-
-// exports.delete = (file_key) => {
-//   let params = {
-//     Bucket: bucket,
-//     Key: file_key,
-//   }
-//   let request = s3.deleteObject(params)
-//   return request.promise()
-// }
-
-// exports.findOne = (file_key) => {
-//   let params = {
-//     Bucket: bucket,
-//     Key: file_key,
-//   }
-//   let request = s3.getObject(params)
-//   return request.promise()
-// }

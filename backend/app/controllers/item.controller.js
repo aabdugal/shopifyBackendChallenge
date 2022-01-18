@@ -116,24 +116,17 @@ exports.uploadPhoto = async (req, res) => {
     res.status(400).send({ message: 'file can not be empty.' })
     return
   }
-
   const file = req.files.file
-  // // Validate file is an image
-  // if (
-  //   !file.mimetype.startsWith('image') &&
-  //   !file.mimetype.startsWith('application/octet-stream')
-  // ) {
-  //   res.status(400).send({ message: 'file must be type image.' })
-  //   return
-  // }
-
-  // Save the trip_photo to the database
-  const data = await s3_handler.upload(file).catch((err) => {
-    res.status(500).send({
-      message: err.message || 'Failed to upload image.',
-    })
+  if (
+    !file.mimetype.startsWith('image') &&
+    !file.mimetype.startsWith('application/octet-stream')
+  ) {
+    res.status(400).send({ message: 'file must be type image.' })
     return
+  }
+  const { Location } = await s3_handler.upload(file, req.params.id)
+  console.log(Location)
+  Item.setImg(Location, req.params.id, (err, data) => {
+    res.send(Location)
   })
-  console.log(data)
-  res.status(200)
 }
