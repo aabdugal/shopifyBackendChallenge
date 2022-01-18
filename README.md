@@ -4,6 +4,7 @@
 
 Hello! This is my attempt at Shopify Intern Challenge.
 I have built a backend using Node.js with MySQL(hosted at AWS) and S3(AWS) for image storage.
+I did the "Allow image uploads AND store image with generated thumbnails" option.
 
 Both the [frontend](https://master.d1nry80urxfqwh.amplifyapp.com/) and [backend](https://gentle-hollows-64935.herokuapp.com/) are hosted.
 
